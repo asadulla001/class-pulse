@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClassPulse — Attendance & Early Warning</title>
+<style>
+:root{--navy:#0f172a;--blue:#2563eb;--sky:#e0f2fe;--bg:#f1f5f9;--text:#1e293b;--muted:#64748b;--line:#e2e8f0;--green:#15803d;--amber:#b45309;--red:#b91c1c}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit}button{border:0;border-radius:9px;padding:10px 13px;background:var(--blue);color:white;cursor:pointer}button:hover{filter:brightness(.96)}input,select,textarea{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;background:white;margin-top:5px}label{display:block;font-weight:700;font-size:13px;margin-top:12px}.app-header{background:var(--navy);color:white;padding:20px max(4%,calc((100% - 1200px)/2));display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}.brand{font-size:12px;letter-spacing:1.5px;color:#93c5fd;font-weight:800}.app-header h1{margin:6px 0;font-size:26px}.app-header p{margin:0;color:#cbd5e1;font-size:14px}.header-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.header-right select{width:auto;min-width:130px;margin:0}.wrap{max-width:1200px;width:92%;margin:24px auto}.welcome{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:18px}.welcome h2{margin:0 0 6px}.muted{color:var(--muted);font-size:14px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card,.panel{background:white;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 3px 12px #0f172a08}.metric-label{color:var(--muted);font-size:13px}.metric{font-size:30px;font-weight:800;margin-top:8px}.metric-sub{font-size:12px;color:var(--muted);margin-top:3px}.main{display:grid;grid-template-columns:1.05fr 1.7fr;gap:16px;margin-top:16px;align-items:start}.panel h3{margin:0 0 6px}.panel p{line-height:1.45}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px}.full{grid-column:1/-1}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.secondary{background:#475569}.green{background:var(--green)}.red{background:var(--red)}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px;min-width:550px}th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line)}th{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}.pill{display:inline-block;padding:5px 8px;border-radius:20px;font-size:11px;font-weight:700;background:#dbeafe;color:#1d4ed8}.pill.high{background:#fee2e2;color:#991b1b}.pill.medium{background:#fef3c7;color:#92400e}.pill.low{background:#dcfce7;color:#166534}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}.toolbar input{flex:1;min-width:180px;margin:0}.toolbar select{width:auto;min-width:130px;margin:0}.reason{font-size:12px;color:#475569;max-width:320px}.hidden{display:none!important}.notice{background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:12px 14px;font-size:13px;color:#1e40af;margin-top:14px}.risk-list{display:grid;gap:10px}.risk-item{border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;justify-content:space-between;gap:12px;align-items:start}.risk-item strong{display:block;margin-bottom:5px}.small{font-size:12px;color:var(--muted)}footer{text-align:center;padding:22px;color:var(--muted);font-size:12px}.student-summary{display:grid;grid-template-columns:1fr 1fr;gap:12px}.bar{height:8px;background:#e2e8f0;border-radius:20px;overflow:hidden;margin-top:8px}.bar span{display:block;height:100%;background:var(--blue)}.login-screen{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(135deg,#0f172a,#1d4ed8)}.login-card{width:min(440px,100%);background:white;border-radius:18px;padding:28px;box-shadow:0 15px 45px #0003}.login-card h1{text-align:center;margin:8px 0}.login-card .brand{text-align:center}.login-card p{text-align:center;color:var(--muted);font-size:13px}.demo-warning{font-size:12px;background:#fff7ed;color:#9a3412;padding:10px;border-radius:8px;margin-top:12px;line-height:1.4}@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.main{grid-template-columns:1fr}.app-header h1{font-size:22px}}@media(max-width:520px){.grid{grid-template-columns:1fr 1fr;gap:9px}.card,.panel{padding:13px}.metric{font-size:25px}.form-grid,.student-summary{grid-template-columns:1fr}.full{grid-column:auto}.wrap{width:94%}}
+</style>
+</head>
+<body>
+<section id="loginScreen" class="login-screen">
+ <div class="login-card">
+  <div class="brand">CLASSPULSE • STUDENT SUCCESS</div>
+  <h1>Attendance & Early Warning</h1>
+  <p>Interactive concept prototype</p>
+  <label for="demoRole">Enter as</label>
+  <select id="demoRole"><option>Teacher</option><option>Student</option><option>Admin</option></select>
+  <label for="demoUser">Demo user</label>
+  <select id="demoUser"><option value="teacher@demo.edu">teacher@demo.edu</option><option value="student01@demo.edu">student01@demo.edu</option><option value="admin@demo.edu">admin@demo.edu</option></select>
+  <label for="demoPass">Password</label><input id="demoPass" type="password" value="demo123" placeholder="Demo password">
+  <button style="width:100%;margin-top:16px" id="loginBtn">Open demo dashboard</button>
+  <div class="demo-warning">Prototype only: demo login is not secure authentication. Data is stored in this browser. Do not enter real student information.</div>
+ </div>
+</section>
+<div id="app" class="hidden">
+<header class="app-header">
+ <div><div class="brand">CLASSPULSE • STUDENT SUCCESS</div><h1>Attendance & Early Warning</h1><p>Spot risk early. Understand the reason. Support the student.</p></div>
+ <div class="header-right"><select id="roleSwitch" aria-label="Switch demo role"><option>Teacher</option><option>Student</option><option>Admin</option></select><button id="loadDemo" class="secondary">Load demo data</button><button id="logout" class="red">Exit demo</button></div>
+</header>
+<main class="wrap">
+ <div class="welcome"><div><h2 id="pageTitle">Teacher dashboard</h2><div class="muted" id="pageSubtitle">Attendance, assessment and follow-up overview</div></div><div class="small" id="lastSaved">Browser demo data</div></div>
+ <section class="grid" id="metrics"></section>
+ <section class="main" id="teacherView">
+  <div class="panel">
+   <h3>Mark attendance</h3><p class="muted">Choose a date and subject, then mark students absent. Unchecked students are present.</p>
+   <label for="attDate">Class date</label><input id="attDate" type="date">
+   <label for="attSubject">Subject / timetable slot</label><select id="attSubject"><option>Data Mining</option><option>Machine Learning</option><option>Database Systems</option><option>Java Programming</option></select>
+   <label for="attStudents">Mark absent students</label><select id="attStudents" multiple size="6" style="height:145px"></select>
+   <div class="small">Tip: use Ctrl-click to select multiple students on desktop.</div>
+   <div class="actions"><button id="saveAttendance">Save attendance</button><button class="secondary" id="specialAttendance">Special attendance</button></div>
+   <div id="attMessage" class="notice hidden"></div>
+   <hr style="border:0;border-top:1px solid var(--line);margin:20px 0">
+   <h3>Record test marks</h3>
+   <div class="form-grid">
+    <div><label for="testStudent">Student</label><select id="testStudent"></select></div>
+    <div><label for="testSubject">Subject</label><select id="testSubject"><option>Data Mining</option><option>Machine Learning</option><option>Database Systems</option></select></div>
+    <div><label for="testMarks">Marks scored</label><input id="testMarks" type="number" min="0" max="100" value="65"></div>
+    <div><label for="testName">Test name</label><input id="testName" value="Unit Test 1"></div>
+   </div>
+   <div class="actions"><button id="saveMarks">Save marks</button></div>
+  </div>
+  <div class="panel">
+   <h3>ClassPulse risk flags</h3><p class="muted">Reasons are visible for teacher review. A flag is not an automated decision.</p>
+   <div class="toolbar"><input id="riskSearch" placeholder="Search student or reason"><select id="riskFilter"><option value="All">All risk levels</option><option>High</option><option>Medium</option><option>Low</option></select><button id="exportCsv" class="secondary">Export CSV</button></div>
+   <div class="table-wrap"><table><thead><tr><th>Student</th><th>Attendance</th><th>Risk</th><th>Reason</th><th>Follow-up</th></tr></thead><tbody id="riskRows"></tbody></table></div>
+   <div class="notice">Early-warning goal: identify students who may need help while they are still above the 75% attendance threshold.</div>
+  </div>
+ </section>
+ <section class="main hidden" id="studentView">
+  <div class="panel"><h3>My attendance</h3><p class="muted">This demo shows one sample student's own summary.</p><div id="studentSummary" class="student-summary"></div><h3 style="margin-top:22px">Attendance target planner</h3><label for="targetPct">Target attendance (%)</label><input id="targetPct" type="number" min="1" max="100" value="75"><label for="futureClasses">Expected future classes</label><input id="futureClasses" type="number" min="0" max="100" value="10"><div class="actions"><button id="planTarget">Calculate target</button></div><div id="plannerResult" class="notice">Enter a target to calculate the plan.</div></div>
+  <div class="panel"><h3>My timetable & marks</h3><div class="table-wrap"><table><thead><tr><th>Day</th><th>Time</th><th>Subject</th></tr></thead><tbody><tr><td>Monday</td><td>09:00</td><td>Data Mining</td></tr><tr><td>Tuesday</td><td>10:00</td><td>Machine Learning</td></tr><tr><td>Wednesday</td><td>11:00</td><td>Database Systems</td></tr><tr><td>Thursday</td><td>09:00</td><td>Java Programming</td></tr><tr><td>Friday</td><td>12:00</td><td>Machine Learning</td></tr></tbody></table></div><h3 style="margin-top:22px">Recent test marks</h3><div id="studentMarks" class="risk-list"></div></div>
+ </section>
+ <section class="main hidden" id="adminView">
+  <div class="panel"><h3>Admin controls</h3><p class="muted">Concept controls for the intended admin workflow.</p><label for="riskThreshold">Low attendance warning threshold (%)</label><input id="riskThreshold" type="number" min="1" max="100" value="60"><label for="dropThreshold">Attendance drop warning (percentage points)</label><input id="dropThreshold" type="number" min="1" max="100" value="20"><div class="actions"><button id="saveRules">Save risk rules</button><button class="secondary" id="resetDemo">Reset demo</button></div><div id="adminMessage" class="notice hidden"></div></div>
+  <div class="panel"><h3>Demo roster</h3><div class="toolbar"><input id="newStudent" placeholder="Student name"><input id="newRoll" placeholder="Roll number"><button id="addStudent">Add student</button></div><div class="table-wrap"><table><thead><tr><th>Roll</th><th>Student</th><th>Attendance</th><th>Risk</th></tr></thead><tbody id="adminRows"></tbody></table></div><div class="notice">Production requirements: server-side role permissions, secure password reset, audit logs, validated imports and institutional privacy review.</div></div>
+ </section>
+</main>
+<footer>ClassPulse concept prototype • Synthetic demo records • Not connected to a college portal</footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const STORE='classpulsePrototype_v1';
+const subjects=['Data Mining','Machine Learning','Database Systems','Java Programming'];
+let role='Teacher', students=[], attendance=[], marks=[], followups={}, rules={threshold:60,drop:20};
+function seed(){
+ students=Array.from({length:45},(_,i)=>({id:i+1,roll:'DS'+String(i+1).padStart(3,'0'),name:['Aarav','Aisha','Rahul','Priya','Arjun','Sana','Vikram','Meera','Kiran'][i%9]+' '+['Kumar','Reddy','Shaik','Devi','Rao'][Math.floor(i/9)%5]}));
+ attendance=[]; marks=[]; followups={};
+ students.forEach((s,i)=>{
+   let total=30, present=Math.round(total*([.59,.68,.73,.78,.82,.88,.94,.97][i%8]));
+   for(let d=0;d<total;d++){attendance.push({studentId:s.id,subject:subjects[d%4],date:new Date(Date.now()-(total-d)*86400000).toISOString().slice(0,10),present:d<present});}
+   marks.push({studentId:s.id,subject:subjects[i%4],test:'Unit Test 1',score:[40,52,61,70,82,91][i%6],outOf:100});
+ });
+ // Add some deliberately declining recent attendance signals for the demo.
+ save();
+}
+function save(){localStorage.setItem(STORE,JSON.stringify({students,attendance,marks,followups,rules}));$('lastSaved').textContent='Saved in this browser';}
+function load(){try{const d=JSON.parse(localStorage.getItem(STORE)||'null');if(d&&Array.isArray(d.students)){students=d.students;attendance=d.attendance||[];marks=d.marks||[];followups=d.followups||{};rules=d.rules||rules;}else seed();}catch(e){seed();}}
+function recordsFor(sid){return attendance.filter(a=>a.studentId===sid)}
+function pct(sid){let r=recordsFor(sid);return r.length?Math.round(100*r.filter(x=>x.present).length/r.length):100}
+function riskFor(s){let p=pct(s.id), rs=[];if(p<rules.threshold)rs.push(`Attendance ${p}% is below ${rules.threshold}%`);let r=recordsFor(s.id).sort((a,b)=>a.date.localeCompare(b.date));let tail=r.slice(-3);if(tail.length===3&&tail.every(x=>!x.present))rs.push('Absent for 3 recorded classes in a row');let studentMarks=marks.filter(m=>m.studentId===s.id).sort((a,b)=>a.score-b.score);if(studentMarks.length&&studentMarks[0].score<50)rs.push(`Latest demo test mark is ${studentMarks[0].score}%`);let level=rs.length>=2||p<rules.threshold-8?'High':rs.length===1||p<78?'Medium':'Low';return {level,reason:rs[0]||'No current rule triggered',all:rs,p};}
+function renderMetrics(){let flagged=students.filter(s=>riskFor(s).level!=='Low').length;let above=students.filter(s=>riskFor(s).level!=='Low'&&pct(s.id)>=75).length;let avg=students.length?Math.round(students.reduce((n,s)=>n+pct(s.id),0)/students.length):0;let vals=role==='Student'?[['My attendance',pct(1)+'%','Across recorded classes'],['My risk',riskFor(students.find(s=>s.id===1)||{id:1}).level,'Based on demo rules'],['My tests',marks.filter(m=>m.studentId===1).length,'Recorded results'],['Target','75%','Example eligibility threshold']]:[['Students',students.length,'Demo roster'],['Flagged students',flagged,'High or medium risk'],['Flagged above 75%',above,'Early-warning opportunity'],['Average attendance',avg+'%','Across current demo records']];$('metrics').innerHTML=vals.map(v=>`<div class="card"><div class="metric-label">${v[0]}</div><div class="metric">${v[1]}</div><div class="metric-sub">${v[2]}</div></div>`).join('')}
+function renderTeacher(){let q=$('riskSearch').value.toLowerCase(),f=$('riskFilter').value;let rows=students.map(s=>({s,r:riskFor(s)})).filter(x=>(f==='All'||x.r.level===f)&&(x.s.name+' '+x.s.roll+' '+x.r.reason).toLowerCase().includes(q));$('riskRows').innerHTML=rows.map(({s,r})=>`<tr><td><strong>${esc(s.name)}</strong><div class="small">${esc(s.roll)}</div></td><td>${r.p}%</td><td><span class="pill ${r.level.toLowerCase()}">${r.level}</span></td><td class="reason">${esc(r.all.join('; ')||r.reason)}</td><td><button class="secondary" onclick="addFollowup(${s.id})">Add note</button><div class="small">${esc(followups[s.id]||'No note yet')}</div></td></tr>`).join('')||'<tr><td colspan="5">No matching students.</td></tr>';populateStudentSelects()}
+function renderStudent(){let s=students.find(x=>x.id===1);if(!s)return;let p=pct(s.id), r=riskFor(s);$('studentSummary').innerHTML=[['Overall attendance',p+'%'],['Risk status',r.level],['Eligibility',p>=75?'Currently ≥ 75%':'Shortage risk'],['Classes recorded',recordsFor(s.id).length]].map(x=>`<div class="card"><div class="metric-label">${x[0]}</div><div class="metric" style="font-size:22px">${x[1]}</div><div class="bar"><span style="width:${Math.min(100,p)}%"></span></div></div>`).join('');$('studentMarks').innerHTML=marks.filter(m=>m.studentId===s.id).map(m=>`<div class="risk-item"><div><strong>${esc(m.test)}</strong><div class="small">${esc(m.subject)}</div></div><span class="pill ${m.score<50?'high':'low'}">${m.score}/${m.outOf}</span></div>`).join('')||'<p class="muted">No marks recorded.</p>'}
+function renderAdmin(){$('adminRows').innerHTML=students.map(s=>{let r=riskFor(s);return `<tr><td>${esc(s.roll)}</td><td>${esc(s.name)}</td><td>${r.p}%</td><td><span class="pill ${r.level.toLowerCase()}">${r.level}</span></td></tr>`}).join('')}
+function render(){renderMetrics();renderTeacher();renderStudent();renderAdmin();$('riskThreshold').value=rules.threshold;$('dropThreshold').value=rules.drop}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function populateStudentSelects(){let opts=students.map(s=>`<option value="${s.id}">${esc(s.roll)} — ${esc(s.name)}</option>`).join('');let old=$('testStudent').value;$('attStudents').innerHTML=opts;$('testStudent').innerHTML=opts;if(students.some(s=>String(s.id)===old))$('testStudent').value=old}
+function setRole(next){role=next;$('roleSwitch').value=next;$('pageTitle').textContent=next+' dashboard';$('pageSubtitle').textContent=next==='Teacher'?'Attendance, assessment and follow-up overview':next==='Student'?'Your attendance, timetable and marks':'Roster, warning rules and exports';$('teacherView').classList.toggle('hidden',next!=='Teacher');$('studentView').classList.toggle('hidden',next!=='Student');$('adminView').classList.toggle('hidden',next!=='Admin');$('loadDemo').classList.toggle('hidden',next==='Student');render()}
+$('loginBtn').onclick=()=>{role=$('demoRole').value;let u=$('demoUser').value;if(!u||!$('demoPass').value){alert('Choose a demo user and enter the demo password.');return}$('loginScreen').classList.add('hidden');$('app').classList.remove('hidden');$('roleSwitch').value=role;setRole(role)};
+$('demoRole').onchange=()=>{$('demoUser').value=$('demoRole').value==='Teacher'?'teacher@demo.edu':$('demoRole').value==='Student'?'student01@demo.edu':'admin@demo.edu'};
+$('roleSwitch').onchange=e=>setRole(e.target.value);
+$('logout').onclick=()=>{$('app').classList.add('hidden');$('loginScreen').classList.remove('hidden')};
+$('loadDemo').onclick=()=>{if(confirm('Replace this browser demo data with 45 synthetic students and six weeks of sample records?')){seed();render();alert('Demo data loaded.')}};
+$('saveAttendance').onclick=()=>{let date=$('attDate').value,subject=$('attSubject').value;if(!date){alert('Choose a class date.');return}let absent=new Set(Array.from($('attStudents').selectedOptions).map(o=>Number(o.value)));students.forEach(s=>{attendance=attendance.filter(a=>!(a.studentId===s.id&&a.date===date&&a.subject===subject));attendance.push({studentId:s.id,subject,date,present:!absent.has(s.id)})});save();render();$('attMessage').textContent=`Attendance saved for ${date} — ${subject}. ${absent.size} student(s) marked absent.`;$('attMessage').classList.remove('hidden')};
+$('specialAttendance').onclick=()=>{let from=prompt('Special attendance start date (YYYY-MM-DD):');if(!from)return;let to=prompt('End date (YYYY-MM-DD):',from);if(!to)return;let selected=Array.from($('attStudents').selectedOptions).map(o=>Number(o.value));if(!selected.length){alert('Select the students who qualify for special attendance first.');return}selected.forEach(id=>{let d=new Date(from+'T12:00:00'),end=new Date(to+'T12:00:00'),n=0;while(d<=end&&n<90){attendance.push({studentId:id,subject:$('attSubject').value,date:d.toISOString().slice(0,10),present:true,special:true});d.setDate(d.getDate()+1);n++}});save();render();alert('Special attendance added for selected students and date range. Demo only: validate institutional policy before real use.')};
+$('saveMarks').onclick=()=>{let id=Number($('testStudent').value),score=Number($('testMarks').value),test=$('testName').value.trim();if(!id||!test||score<0||score>100){alert('Enter a test name and marks from 0 to 100.');return}marks.push({studentId:id,subject:$('testSubject').value,test,score,outOf:100});save();render();alert('Test marks saved.')};
+window.addFollowup=id=>{let note=prompt('Teacher follow-up note:',followups[id]||'');if(note===null)return;followups[id]=note;save();render()};
+$('riskSearch').oninput=renderTeacher;$('riskFilter').onchange=renderTeacher;
+$('exportCsv').onclick=()=>{let rows=[['Roll','Student','Attendance %','Risk','Reason','Follow-up'],...students.map(s=>{let r=riskFor(s);return[s.roll,s.name,r.p,r.level,r.all.join('; ')||r.reason,followups[s.id]||'']})];let csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='classpulse-risk-report.csv';a.click();URL.revokeObjectURL(a.href)};
+$('planTarget').onclick=()=>{let s=students.find(x=>x.id===1),p=pct(s.id),present=recordsFor(s.id).filter(x=>x.present).length,total=recordsFor(s.id).length,target=Number($('targetPct').value),future=Number($('futureClasses').value);if(target<=0||target>100||future<0){$('plannerResult').textContent='Enter a target from 1 to 100 and a non-negative future class count.';return}let needed=Math.ceil((target*(total+future)/100)-present);let miss=Math.floor(present/(target/100)-total);$('plannerResult').textContent=needed<=0?`With ${future} future classes, you can miss up to ${Math.max(0,miss)} more class(es) and stay at or above ${target}%, based on the current demo record.`:needed<=future?`Attend at least ${needed} of the next ${future} classes to reach ${target}% in this simplified plan.`:`Even attending all ${future} planned classes would not reach ${target}%. You need more future classes or a review of the recorded data.`};
+$('saveRules').onclick=()=>{let t=Number($('riskThreshold').value),d=Number($('dropThreshold').value);if(t<1||t>100||d<1||d>100){alert('Thresholds must be between 1 and 100.');return}rules={threshold:t,drop:d};save();render();$('adminMessage').textContent='Risk rules saved for this browser demo. The drop rule is shown as a setting concept; historical trend calculation is not fully implemented.';$('adminMessage').classList.remove('hidden')};
+$('addStudent').onclick=()=>{let name=$('newStudent').value.trim(),roll=$('newRoll').value.trim();if(!name||!roll){alert('Enter a student name and roll number.');return}if(students.some(s=>s.roll.toLowerCase()===roll.toLowerCase())){alert('That roll number already exists.');return}students.push({id:Math.max(0,...students.map(s=>s.id))+1,roll,name});$('newStudent').value='';$('newRoll').value='';save();render()};
+$('resetDemo').onclick=()=>{if(confirm('Reset all local demo changes and reload sample data?')){seed();render();$('adminMessage').textContent='Demo reset complete.';$('adminMessage').classList.remove('hidden')}};
+$('attDate').value=new Date().toISOString().slice(0,10);
+load();populateStudentSelects();render();
+</script>
+</body>
+</html>
